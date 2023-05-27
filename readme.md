@@ -11,4 +11,4 @@ Durante o desenvolvimento do projeto foi desenvolvido duas APIs, e consultar um 
     * *Responsável por realizar o cálculo de frete*
 
 ---
-![Verão atual do TMS](/diagramas/current_version_tms.svg "Verão atual do TMS")
+![Verão atual do TMS](/diagramas/current_version_tms.png "Verão atual do TMS")
