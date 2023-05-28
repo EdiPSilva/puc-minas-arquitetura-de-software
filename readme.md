@@ -36,7 +36,7 @@ Durante o desenvolvimento do projeto foi desenvolvido duas APIs, e consultar um 
 ![Verão atual do TMS](/diagramas/full_new_architecture.png "Verão atual do TMS")
 Este diagrama detém do levantamento dos próximos passos que poderão ser executado com base na prioridade retornada pelo cliente.
 
-**Componente AWS:**
+**Componente AWS:** <br>
 Será utilizado da cloud da AWS e seus componentes como:
 * API Gateway;
 * Load Balance;
@@ -78,3 +78,29 @@ Será utilizado da cloud da AWS e seus componentes como:
     * Modulo de gerenciamento e configuração das transportadoras.
 * Tracking
     * Gerencia os estágios do transporte do pedido, data de saída de entrega, etapas até o endereço e conclusão da entrega.
+
+**SFTP:**<br>
+Utilizando deste formato de arquitetura, a integração entre a transportadora poderá ser realizada de algumas formas:
+* Enviando arquivos .txt no formato *Eletronic Data Interchange (EDI)* ao SFTP
+    * Assim que subir o arquivo o AWS Transfer envia o arquivo ao Bucket S3.
+    * Então as Lambda Function entra em ação e realiza a validação do layout do arquivo.
+    * Caso tudo esteja correto os dados de ocorren ou conemb serão gravados na base.
+    * Entretanto se houver algum problema será gerado um log na base não relacional.
+* Utilizar do módulo da transportadora
+    * Nesse formato a transportadora iria enviar o arquivo direto ao Bucket S3.
+* Utilizar dos endpoint dia API Rest.
+    * Deste modo não há necessidade de validar o layout do arquivo, porque a comunicação é no formato JSON.
+
+**Comunicação externa:**<br>
+No diagrama há algumas representações de comunicação esternas, que são sistemas e processos executados por aplicações fora do contexto do TMS, por exemplo:
+* Transportadora
+    * Faz uso do SFTP
+    * Faz uso do Módulo da transportadora
+* E-commerce
+    * Realiza cotação de frete
+* ERP
+    * Fornece os dados do pedido
+    * Recupera os dados de cálculo
+    * Recupera os dados de faturamento
+* WMS
+    * Fornece os dados dos pedidos que serão transportados
