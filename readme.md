@@ -38,7 +38,6 @@ Este diagrama detém do levantamento dos próximos passos que poderão ser execu
 
 **Componente AWS:** <br>
 Será utilizado da cloud da AWS e seus componentes como:
-* API Gateway;
 * Load Balance;
 * Cluster Kubernetes EKS;
 * Banco de dados relacional RDS;
